@@ -1,0 +1,21 @@
+import movieTrailer from 'movie-trailer'
+
+movieTrailer('Free Guy').then(res => console.log(res)) 
+
+--> returns https://www.youtube.com/watch?v=kgcgg92hmpE
+This is trailer for movie "Free Guy" in youtube
+------------------------------------------------
+
+const url = new URL('https://www.youtube.com/watch?v=kgcgg92hmpE')
+console.log(url) --> returns https://www.youtube.com/watch?v=2g811Eo7K8U
+
+const url = new URL('https://www.youtube.com/watch?v=kgcgg92hmpE').search
+console.log(url) --> returns ?v=2g811Eo7K8U
+
+const sai =  new URLSearchParams(new URL('https://www.youtube.com/watch?v=kgcgg92hmpE'))
+console.log(sai) --> returns URLSearchParams {} object which contains append, entries, get... methods
+
+const url =  new URLSearchParams(new URL('https://www.youtube.com/watch?v=kgcgg92hmpE').search)
+const sai = url.get('v')
+console.log(sai) --> returns 2g811Eo7K8U
+

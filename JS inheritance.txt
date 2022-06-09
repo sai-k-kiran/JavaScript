@@ -1,0 +1,40 @@
+class Person {
+    constructor(name, age, occ) {
+        this.name  = name;
+        this.age = age;
+        this.occ = occ
+    }
+    getOcc() {
+        return `${this.name}'s Occupation is ${this.occ}`
+    }
+}
+
+let per1 = new Person('Sai', 24, 'student')
+
+-----------------------------------------------------
+// Student class is inheriting "name, age, occ" from Person class. To inherit those properties from Person class, we have to use super()
+// and the properties from Person class into the super. 
+// All the properties of the Student(including properties of Person) should be included in constructor of Student class.
+
+class Student extends Person {
+    constructor(name, age, occ, school, addr) {
+        super(name, age, occ)
+        this._school = school
+        this.addr = addr
+    }
+    getAddr() {
+        return `${this.name} lives in ${this.addr}`
+    }
+    get school() {
+        return this._school
+    }
+    set school(newSchool) {
+        this._school = newSchool
+    }
+}
+
+let stu1 = new Student('Cameron', 24, 'NE', 'MIT', 'MS')
+
+console.log(stu1.school)
+stu1.school = 'Caltech'
+console.log(stu1.school)

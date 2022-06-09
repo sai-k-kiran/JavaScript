@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <input id="x" type="text" placeholder="First number"/><br><br>
+        <input id="y" type="text" placeholder="Second number"/><br><br>
+        <button onclick="add()" id="btn">ADD</button>
+        <h2 id="result">Result</h2>
+        <script>
+            function add(){
+                var a = document.getElementById('x').value; // To take the inputted value 
+                var first = parseInt(a, 10);                // Convert into decimal(base 10)
+                var b = document.getElementById('y').value;
+                var second = parseInt(b, 10);
+                document.getElementById('result').textContent = "Result: " + (first + second); 
+            } 
+        </script>
+    </body>
+</html>

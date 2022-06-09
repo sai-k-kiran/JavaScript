@@ -1,0 +1,86 @@
+function greet() {
+    for(var i = 0; i < 3; i++) {
+        console.log(i) // returns 0, 1, 2
+    }
+    console.log(i) // returns 3
+}
+
+greet()
+console.log(i) // i is not defined
+
+//-----------------------------------------------
+
+function greet() {
+    for(let i = 0; i < 3; i++) {
+        console.log(i) // returns 0, 1, 2
+    }
+    console.log(i) // i is not defined
+}
+
+greet()
+console.log(i) // i is not defined
+
+//------------------------------------------------
+
+const people = ['sai', 'rob']
+console.log(people) // returns ['sai', 'rob']
+
+// people = ['mark']
+ 
+// console.log(people) // error, assign to constant variable
+
+
+people.push('mark')
+
+console.log(people) // returns ['sai', 'rob', 'mark']
+
+// Assigning a new string to a const variable is not allowed because re-assigning 
+// changes the location of that variable in memory.
+
+// But modifying a const variable is allowed bcoz it doesnt changes the memory location
+
+//------------------------------------------------------
+
+let i = 4;
+
+function eye() {
+    let i = 'Inside fn'
+    console.log(i)
+}
+
+eye() // returns "Inside fn"
+console.log(i) // returns 4
+
+//---------------------------------------------
+const i = 4;
+
+function eye() {
+    const i = 'Inside fn'
+    console.log(i)
+}
+
+eye() // returns "Inside fn"
+console.log(i) // returns 4
+
+//--------------------------------------------
+
+var i = 4;
+
+function eye() {
+    var i = 'Inside fn' // re-declaring "i"
+    console.log(i)
+}
+
+eye() // returns "Inside fn"
+console.log(i) // returns 4
+
+//---------------------------------------------
+
+var i = 4;
+
+function eye() {
+    console.log(i)
+}
+
+// eye() // returns 4
+// console.log(i) // returns 4

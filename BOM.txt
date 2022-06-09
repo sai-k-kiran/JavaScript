@@ -1,0 +1,278 @@
+-------------------------WINDOW------------------
+
+1. All global JavaScript objects, functions, and variables automatically become members of the window object.
+    Global variables are properties of the window object.
+    Global functions are methods of the window object.
+    Even the document object (of the HTML DOM) is a property of the window object: 
+
+    window.document.getElementById("header"); 
+    document.getElementById("header");   --> Above one and this are same
+
+2.  window.innerHeight - the inner height of the browser window (in pixels)
+    window.innerWidth - the inner width of the browser window (in pixels)
+    The browser window (the browser viewport) is NOT including toolbars and scrollbars.
+
+3   window.open() - open a new window
+    window.close() - close the current window
+    window.moveTo() - move the current window
+    window.resizeTo() - resize the current window
+
+------------------------SCREEN------------------
+
+4. The window.screen object contains information about the user's screen.
+   The window.screen object can be written without the window prefix.
+   
+    screen.width
+    screen.height
+    screen.availWidth
+    screen.availHeight
+    screen.colorDepth
+    screen.pixelDepth  --> properties
+
+5. The screen.width property returns the width of the user's screen(not window) in pixels.
+    Scrren size doesn't change because it is hardware. window size can be chnaged
+
+6. The screen.height property returns the height of the visitor's screen in pixels.
+    document.getElementById("demo").innerHTML = "Screen Height: " + screen.height; --> returns screen height
+
+7. The screen.availWidth property returns the width of the visitor's screen, in pixels, 
+    minus interface features like the Windows Taskbar.
+
+8. The screen.availHeight property returns the height of the visitor's screen, in pixels, 
+    minus interface features like the Windows Taskbar.
+
+    Only the scrollable portion will be shown in height
+
+9. The screen.colorDepth property returns the number of bits used to display one color
+
+    24 bits = 16,777,216 different "True Colors" (16M Colors)
+    32 bits = 4,294,967,296 different "Deep Colors" ()
+
+    My computer has 24 bits colorDepth
+
+    The screen.pixelDepth property returns the pixel depth of the screen.
+    For modern computers, Color Depth and Pixel Depth are equal.
+
+------------------------ WINDOW LOCATION------------------
+
+10. window.location.href --> returns the href (URL) of the current page as text
+    window.location.hostname --> returns the domain name of the web host
+    window.location.pathname --> returns the path of html(or asp file) and filename of the current page
+    window.location.protocol --> returns the web protocol used (http: or https:)
+    window.location.assign() --> loads a new document
+    window.location.port --> returns the internet host port number(8080, 8000.....) of the current page
+    --> If the port number is default (80 for http and 443 for https), most browsers will display 0 or nothing.
+
+11. <button onclick="newDoc()">Click to go to W3 school</button>
+
+    function newDoc() {
+        window.location.assign("https://www.w3schools.com") --> when clicked on button, it redirects to w3schools.com
+    }
+
+12. The window.history object contains the browsers history.
+    
+    <input type="button" value="Back" onclick="goBack()">
+
+    function goBack() {
+        window.history.back()
+    } --> Same as clicking back button in browser
+
+    function goForward() {
+        window.history.forward()
+    } Same as clicking forward button in browser
+
+------------------------------Window Navigator-------------------------------
+
+13. The navigator.cookieEnabled property returns true if cookies are enabled or false
+    <p id="demo"></p>
+
+    document.getElementById("demo").innerHTML = "cookies enabled: " + navigator.cookieEnabled;
+
+14. <p id="demo"></p>
+    document.getElementById("demo").innerHTML = "Browser name is: " + navigator.appName;
+    --> Returns teh browser name, Netscape" is browser name for IE11, Chrome, Firefox, and Safari
+
+15. navigator.appCodeName property returns the code name of the browser
+
+    document.getElementById("demo").innerHTML = "Browser Code Name is " + navigator.appCodeName;
+    --> "Mozilla" is the application code name for Chrome, Firefox, IE, Safari, and Opera.
+
+16. navigator.product property returns the product name of the browser engine
+
+    Do not rely on this. Most browsers returns "Gecko" as product name !!
+
+17. navigator.appVersion property returns version information about the browser
+
+18. navigator.userAgent  property returns the user-agent header sent by the browser to the server
+    
+    Different browsers can use the same name
+    The navigator data can be changed by the browser owner
+    Some browsers misidentify themselves to bypass site tests
+    Browsers cannot report new operating systems, released later than the browser
+
+19. navigator.platform property returns the browser platform (operating system)
+
+    document.getElementById("demo").innerHTML = navigator.platform --> returns win32 on my product
+
+20. navigator.language property returns the browser's language
+
+21. navigator.onLine property returns true if the browser is online(if coonected to internet)
+
+22. navigator.javaEnabled() method returns true if Java is enabled
+
+-------------------------Popup Boxes--------------------------------
+
+23. <button onclick="myFunction()">Try it</button>
+
+    function myFunction() {
+        alert("I am an alert box!");
+    } --> alert box saying "I am an alert box!"
+
+24. <button onclick="myFunction()">Try it</button>
+    <p id="demo"></p>
+
+    function myFunction() {
+        var txt;
+        if (confirm("Press a button!")) {
+            txt = "You pressed OK!";
+        } else {
+            txt = "You pressed Cancel!";
+        }
+        document.getElementById("demo").innerHTML = txt;
+    } --> confirm box pops up, the user will have to click either "OK" or "Cancel" to proceed. 
+    If the user clicks "OK", the box returns true. If the user clicks "Cancel", the box returns false.
+
+25. <button onclick="myFunction()">Try it</button>
+    <p id="demo"></p>
+
+    function myFunction() {
+        let text;
+        let person = prompt("Please enter your name:", "Harry Potter");
+        if (person == null || person == "") {
+            text = "User cancelled the prompt.";
+        } else {
+            text = "Hello " + person + "! How are you today?";
+        }
+        document.getElementById("demo").innerHTML = text;
+    } --> an input field(scanf/input()) in an alert box
+
+26. \n --> can be used in alert box text
+
+---------------------------Timing Events--------------------------------
+
+27. <button onclick="myVar = setTimeout(myFunction, 3000);">Try it</button>
+    --> After 3000 milliseconds, myFunction fn exexcutes
+
+    <button onclick="clearTimeout(myVar)">Stop it</button>
+    --> Stops the myVar from being executed
+
+    function myFunction() {
+        alert('Hello');
+    } --> Dictates what myFunction() would do
+
+28. setInterval() method repeats a given function at every given time-interval.
+
+    <p id="demo"></p> --> This is where time is shown
+    <button onclick="clearInterval(myVar)">Stop time</button> - Stops the myTimer() from being executed
+
+    let myVar = setInterval(myTimer, 1000); --> execute myTimer every 1000 msec(or sec)
+    --> myTimer fn shows time in readable format (12:38:45 PM), but as this fn is re-executed every second, the seconds 
+        keep changing and we get a live dynamic time.
+        
+    function myTimer() {
+        const d = new Date();
+        document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+    }
+    --> toLocaleTimeString() shows time in readable format (12:38:45 PM)
+    --> getSeconds() shows only seconds 
+
+    -------ANOTHER EXAMPLE BUT SAME AS ABOVE-----
+    function startTime() {
+        const today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =  h + ':'+ m + ":" + s;
+        setTimeout(startTime, 1000);
+    }
+
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  --> if min or sec are less than 10 than add a '0' in front so 09 min instead of 9 min
+        return i;
+    }
+
+---------------------------Cookies--------------------------------
+
+Cookies are data, stored in small text files, on your computer.
+
+When a web server has sent a web page to a browser, the connection is shut down, and the server forgets everything about the user.
+
+Cookies were invented to solve the problem "how to remember information about the user":
+
+    When a user visits a web page, his/her name can be stored in a cookie.
+    Next time the user visits the page, the cookie "remembers" his/her name.
+
+Cookies are saved in name-value pairs like: username = John Doe
+When a browser requests a web page from a server, cookies belonging to the page are added to the request. 
+This way the server gets the necessary data to "remember" information about users.
+
+29. document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/"; 
+    --> create a cookie using js. With a path parameter, you can tell the browser what path the cookie belongs to. 
+    By default, the cookie belongs to the current page.
+
+30. let x = document.cookie; --> returns all cookies in one string much like: cookie1=value; cookie2=value; cookie3=value;
+
+31. You can change a cookie the same way as you create it. 
+    document.cookie = "username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+    --> The old cookie is overwritten.
+
+32. To delete a Cookie with JavaScript, just set the expires parameter to a past date.
+
+33. An exmaple to get create, get a cookie
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+} --> Creates a cookie with specified expiy date
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+} --> retrieves teh cookie value
+
+function checkCookie() {
+  let user = getCookie("username");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+     user = prompt("Please enter your name:","");
+     if (user != "" && user != null) {
+       setCookie("username", user, 30);
+     }
+  }
+} --> Asks for the name of user and tehn prompts with teh same name.
+</script>
+</head>
+
+<body onload="checkCookie()"></body>
+
+</html>

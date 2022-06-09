@@ -1,0 +1,172 @@
+1.  JSON stands for JavaScript Object Notation
+    JSON is a lightweight data-interchange format
+    JSON is plain text written in JavaScript object notation
+    JSON is used to send data between computers
+    JSON is language independent *
+
+    A common use of JSON is to exchange data to/from a web server.
+    When receiving data from a web server, the data is always a string.
+    Parse the data(string) with JSON.parse(), and the data becomes a JavaScript object.
+
+2. person = {name:"John", age:31, city:"New York"}; --> JavaScript object OR JSON string(data)
+    name, age, car --> properties
+    person.name --> 'John' OR person['name'] --> 'John'
+    Curly braces hold objects, Square brackets hold arrays
+
+3. JSON.parse() --> JavaScript built in function for converting JSON strings into JavaScript objects
+
+4. JSON.stringify() --> JavaScript built in function for converting an object into a JSON string
+
+5. JSON Strings --> {"name":"John"}
+    JSON Numbers --> {"age":30}
+    JSON Objects --> {
+                        "employee":{"name":"John", "age":30, "city":"New York"}
+                    }
+    JSON Arrays --> {
+                        "employees":["John", "Anna", "Peter"]
+                    }
+    JSON Booleans --> {"sale":true} 
+    JSON null --> {"middlename":null} 
+
+6. const obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}'); --> converts JSON string into js object
+
+    const txt = '{"name":"John", "age":30, "city":"New York"}'
+    const obj = JSON.parse(txt);
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+
+7. const text = '[ "Ford", "BMW", "Audi", "Fiat" ]'; --> JSON array
+    const myArr = JSON.parse(text);                      --> Parsing a JSON Array.
+    document.getElementById("demo").innerHTML = myArr[0]; 
+
+8. Date objects are not allowed in JSON. If you need to include a date, write it as a string.
+    You can convert it back into a date object later:
+
+    const text = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+    const obj = JSON.parse(text);
+    obj.birth = new Date(obj.birth);  --> See here
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth; 
+
+9. const text = '{"name":"John", "birth":"1986-12-14", "city":"New York"}';
+    const obj = JSON.parse(text, function (key, value) { --> Convert a string into a date, using the reviver function
+        if (key == "birth") {
+            return new Date(value);
+        } else {
+            return value;
+        }
+        });
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.birth; 
+
+10. const text = '{"name":"John", "age":"function() {return 30;}", "city":"New York"}'; --> Convert a string into a function
+    const obj = JSON.parse(text);
+    obj.age = eval("(" + obj.age + ")");
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.age(); 
+
+11. Convert a JavaScript object into a string with JSON.stringify()
+
+    const obj = {name: "John", age: 30, city: "New York"}; --> js object
+    const myJSON = JSON.stringify(obj); 
+    document.getElementById("demo").innerHTML = myJSON; --> returns {"name":"John","age":30,"city":"New York"} JSON string
+
+12. const arr = ["John", "Peter", "Sally", "Jane"]; --> js array
+    const myJSON = JSON.stringify(arr);
+    document.getElementById("demo").innerHTML = myJSON; --> returns ["John","Peter","Sally","Jane"] JSON string
+
+13. const myObj = { name: "John", age: 31, city: "New York" };
+    const myJSON = JSON.stringify(myObj);   --> converting to JSON string
+    localStorage.setItem("testJSON", myJSON); --> storing as 'testJSON'
+
+    let text = localStorage.getItem("testJSON");
+    let obj = JSON.parse(text);   --> converting to js object
+    document.getElementById("demo").innerHTML = obj.name; --> returns "John"
+
+14. In JSON, date objects are not allowed. The JSON.stringify() function will convert any dates into strings.
+
+    const obj = {name: "John", today: new Date(), city: "New York"};
+    const myJSON = JSON.stringify(obj);
+    document.getElementById("demo").innerHTML = myJSON; --> {"name":"John","today":"2021-08-06T11:04:39.333Z","city":"New York"}
+    --> JSON.stringify function converted date object into a string
+
+15. In JSON, functions are not allowed as object values.
+    JSON.stringify() function will remove any functions from a JavaScript object, both the key and the value
+
+    const obj = {name: "John", age: function () {return 30;}, city: "New York"};
+    const myJSON = JSON.stringify(obj);
+    document.getElementById("demo").innerHTML = myJSON; --> {"name":"John","city":"New York"}, "age":30 is removed
+
+16. const obj = {name: "John", age: function () {return 30;}, city: "New York"};
+    obj.age = obj.age.toString();  --> converting function into string
+    const myJSON = JSON.stringify(obj);
+    document.getElementById("demo").innerHTML = myJSON; ---> {"name":"John","age":"function () {return 30;}","city":"New York"}
+
+17. '{"name":"John", "age":30, "car":null}' --> This is a JSON string
+    "name", "John", "age", 30, "car", null --> JSON object literals
+
+    JSON object literals are surrounded by curly braces {}.
+    JSON object literals contains key/value pairs.
+    Keys and values are separated by a colon.
+
+    It is a common mistake to call a JSON object literal "a JSON object". JSON cannot be an object. JSON is a string format.
+    The data is only JSON when it is in a string format. When it is converted to a JavaScript variable, it becomes a JavaScript object.
+
+18. const myObj = {"name":"John", "age":30, "car":null}; --> Creating a js object from a JSON Literal
+    document.getElementById("demo").innerHTML = myObj.name; --> returns 'John'
+
+19. const myJSON = '{"name":"John", "age":30, "car":null}';
+    const myObj = JSON.parse(myJSON); --> Creating a js object Parsing JSON
+    x = myObj.name; --> access object values by using dot . notation
+    x = myObj["name"]; -->  access object values by using bracket [] notation
+
+20. const myJSON = '{"name":"John", "age":30, "car":null}';
+    const myObj = JSON.parse(myJSON);
+
+    let text = "";
+    for (let x in myObj) {
+        text += x + ", ";
+    }
+    document.getElementById("demo").innerHTML = text; --> returns name, age, car,
+
+21. '["Ford", "BMW", "Fiat"]' --> This is a JSON string
+    "Ford", "BMW", "Fiat" --> JSON array literals
+
+22. const myArray = ["Ford", "BMW", "Fiat"]; --> creating a JavaScript array from a literal
+    OR
+    const myJSON = '["Ford", "BMW", "Fiat"]';
+    const myArray = JSON.parse(myJSON); --> creating a JavaScript array by parsing a JSON string
+    document.getElementById("demo").innerHTML = myArray[0]; -->  access array values by index, returns Ford
+
+21. const myJSON = '{"name":"John", "age":30, "cars":["Ford", "BMW", "Fiat"]}';
+    const myObj = JSON.parse(myJSON);
+
+    let text = "";
+    for (let i in myObj.cars) {
+        text += myObj.cars[i] + ", ";
+    }
+
+    document.getElementById("demo").innerHTML = text; --> returns Ford, BMW, Fiat, 
+    -----------OR------------
+
+    const myJSON = '{"name":"John", "age":30, "cars":["Ford", "BMW", "Fiat"]}';
+    const myObj = JSON.parse(myJSON);
+
+    let text = "";
+    for (let i = 0; i < myObj.cars.length; i++) {
+        text += myObj.cars[i] + ", ";
+    }
+
+    document.getElementById("demo").innerHTML = text; --> returns Ford, BMW, Fiat,
+
+22. const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function() { --> when page loads, parse "json_demo.txt" string into a js object
+        const myObj = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myObj.name; --> returns name from the myObj object
+    }
+    xmlhttp.open("GET", "json_demo.txt"); --> get "json_demo.txt" file from server & save it in variable xmlhttp
+    xmlhttp.send();
+
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function() { --> when page loads, parse "json_demo.txt" string into a js array
+        const myArr = JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = myArr[0]; --> returns the first literal
+    } 
+    xmlhttp.open("GET", "json_demo_array.txt", true);
+    xmlhttp.send();

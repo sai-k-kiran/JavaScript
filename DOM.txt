@@ -1,0 +1,488 @@
+1. To change the content of <p> element with id="demo"
+    <p id="demo"></p>
+
+    <script>
+    document.getElementById("demo").innerHTML = "Hello World!";
+    </script>
+    OR
+    element.innerHTML =  new html content
+
+2. Changing HTML Elements
+    Change the inner HTML of an element --> element.innerHTML =  new html content
+    Change the attribute value of an HTML element --> element.attribute = new value
+        <p style="color:red;"> - Here "style" is <p>'s attribute 
+        <a href=""> - Here "href" is <a>'s attribute
+    Change the attribute value of an HTML element --> element.setAttribute(attribute, value) 
+    Change the style of an HTML element --> element.style.property = new style
+
+    For ex => var x = document.getElementById('result');
+        x.innerHTML = "This is result"
+        x.setAttribute(name, 'text') --> name="text"
+
+3. Adding and Deleting Elements
+    Create an HTML element --> document.createElement(element)
+    Remove an HTML element --> document.removeChild(element)
+    Add an HTML element --> document.appendChild(element)
+    Replace an HTML element --> document.replaceChild(new, old)
+    Write into the HTML output stream --> document.write(text)
+
+4. Adding Events Handlers
+    document.getElementById(id).onclick = function(){code}
+
+5. <p id="intro">This is inner HTML</p>;
+   <p id="demo"></p>
+
+   document.getElementById("demo").innerHTML = 
+   "Added string: " + element.innerHTML;  --> Adds text from 'intro' element into the 'demo' element
+
+6.<p>First text</p>
+  <p>Second text</p>
+
+  const element = document.getElementsByTagName("p");
+
+   document.getElementById("demo").innerHTML = 'First one is: ' + element[1].innerHTML; -->
+   returns the text from the second <p> element. element[0] --> first <p> element
+
+7.<div id="main">
+    <p>FIRST</p>
+    <p>SECOND</p>
+  </div>
+
+  <p id="demo"></p>
+
+  const main = document.getElementById("main");
+  const y = main.getElementsByTagName("p");   --> see that we are not using document.getE... but main.get... because 
+     it is inside the "main" element
+
+  document.getElementById("demo").innerHTML = 
+  'The first paragraph (index 0) inside "main" is: ' + y[0].innerHTML; -->
+  Returns the first <p> element inside the div id="main"
+
+8. <p class="intro">Hello World!</p>
+
+  const x = document.getElementsByClassName("intro");
+  document.getElementById("demo").innerHTML = 
+  'The first paragraph (index 0) with class="intro" is: ' + x.innerHTML;
+
+9. <p class="intro">Hello World!</p>
+   <p id="demo"></p>
+
+  const x = document.querySelector("p.intro");  
+  document.getElementById("demo").innerHTML = 
+  'The first paragraph (index 0) with class="intro" is: ' + x.innerHTML;
+
+10. <form id="form1" action="" onsubmit="return validateForm()" method="post">
+        First name: <input type="text" name="fname" value="Donald"><br>
+        Last name: <input type="text" name="lname" value="Duck"><br><br>
+        <input type="submit" value="Submit">
+    </form> 
+    
+    <p id="demo"></p>
+
+    const x = document.forms["form1"];   --> sets 'x' to the form "form1"
+    let text = "";
+    for (let i = 0; i < x.length ;i++) {    --> x.length = length od the forms elements i.e 3
+        text += x.elements[i].value + "<br>";  --> returns the value="" from all the html elements in form 
+    }
+    document.getElementById("demo").innerHTML = text; --> returns 'Donald', 'Duck'and 'Submit'
+
+    Try x.elements[i].name/type/nothing in line 85 and see the output
+
+    function validateForm() {
+        let x = document.forms["form1"]["fname"].value; --> If 'fname' field in 'form1' then it will be alerted
+        if (x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+    }
+
+10.1 <p>Please input a number between 1 and 10:</p>
+     <input id="numb">
+     <button type="button" onclick="myFunction()">Submit</button>
+     <p id="demo"></p>
+
+     function myFunction() { 
+        let x = document.getElementById("numb").value;
+        let text;
+        if (isNaN(x) || x < 1 || x > 10) {
+            text = "Input not valid";
+        } else {
+            text = "Input OK";
+        }
+        document.getElementById("demo").innerHTML = text;
+     } --> Accepts numbers between 1 AND 10(exclusive)
+
+11. document.documentElement.innerHTML --> will show the text of all the elements in that page
+
+12. <head>
+        <title>W3Schools Demos</title>
+        <h1>Sai</h1>
+    </head> 
+
+    document.getElementById("demo").innerHTML = document.head.textContent; --> returns the text in <title> inside <head>
+
+    document.getElementById("demo").innerHTML =
+    "The title of this document is: " + document.title; --> returns the text in <title> inside <head>
+
+13. document.getElementById("demo").innerHTML =
+    "Number of images: " + document.images.length; --> returns the number of images on the page
+
+    document.links.length; --> returns the number of links on the page
+
+    document.scripts.length; --> returns the number of scripts on the page
+
+    document.embeds.length; --> returns the number of embeds on the page
+
+    document.anchors.length; --> returns the number of <a> tags on the page
+
+14. <img id="image" src="smiley.gif" width="160" height="120"><br>
+    <button onclick="change()">Click</button>
+
+    function change(){
+        document.getElementById("image").src = "landscape.jpg"; --> changes the 'src' attribute of 'img'
+    }
+    --> When the button is clicked, the image changes to landscape
+
+15. document.getElementById("demo").innerHTML = "Date : " + Date(); --> Shows today's Date
+
+16. document.write(Date()); --> directly writes date without any html element
+
+17. <p id="p2">Hello World!</p>
+
+    document.getElementById("p2").style.color = "blue";
+    document.getElementById("p2").style.fontFamily = "monotype corsiva";
+    document.getElementById("p2").style.fontSize = "32px";
+    --> CHanges the stling of the <p id="p2"> element
+
+18. <h1 id="head">My Heading</h1>
+    <button type="button" onclick="document.getElementById('id1').style.color = 'red'">Click Me!</button>
+
+19. <button onclick = "stop()"> Stop </button> 
+    
+    var colorSwitch = setInterval(color, 200);  --> Run 'color' function every 200ms
+  
+    function color() {  
+        var var2 = document.body;  
+        var2.style.backgroundColor = var2.style.backgroundColor == "lightblue" ? "lightgreen" : "lightblue";  
+    }  
+    function stop() {  
+        clearInterval(colorSwitch);
+    }
+    --> Every 200ms, color switches from green and blue. CLick button to stop
+
+20. <p><button onclick="myMove()">Click Me</button></p> 
+    <div id ="container">
+        <div id ="animate"></div>
+    </div>
+    <style>
+    #container {
+        width: 400px;
+        height: 400px;
+        position: relative;
+        background: yellow;
+    }
+    #animate {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: red;
+    }
+</style>
+    function myMove() {
+        let id = null;
+        const elem = document.getElementById("animate");   
+        let pos = 0;
+        clearInterval(id);
+        id = setInterval(frame, 5);
+        function frame() {
+            if (pos == 350) {
+                clearInterval(id);
+            } else {
+                pos++; 
+                elem.style.top = pos + "px"; 
+                elem.style.left = pos + "px"; 
+            }
+        }
+    }
+
+-------------------------------EVENTS------------------------
+
+21. <h2 onclick="this.innerHTML='Ooops!'">Click on this text!</h2> --> 'Ooops' when clicked
+
+22. <h2 onclick="changeText(this)">Click on this text!</h2>
+
+    function changeText(e) {
+        e.innerHTML = "Ooops!";
+    }
+
+23. <button id="myBtn">Try it</button>
+    <p id="demo"></p>
+
+    document.getElementById("myBtn").onclick = displayDate; displayDate is the fn which runs when clicked
+
+    function displayDate() {
+        document.getElementById("demo").innerHTML = Date();
+    }
+
+24. function checkCookies() {
+        var text = "";
+        if (navigator.cookieEnabled == true) {
+            text = "Cookies are enabled.";
+        } else {
+            text = "Cookies are not enabled.";
+        }
+        document.getElementById("demo").innerHTML = text;
+    } --> Checks if cookies are enabled
+
+25. <input type="text" id="fname" onchange="upperCase()">
+
+    function upperCase() {
+        const x = document.getElementById("fname");
+        x.value = x.value.toUpperCase();
+    } -- When mouse pointer is clicked outside the name field, inputted value becomes capital letters
+
+26. <div onmouseover="mOver(this)" onmouseout="mOut(this)">Mouse Over Me</div>
+
+    function mOver(obj) { 
+        obj.innerHTML = "Thank You"
+    } --> When mouse hovers on div, then the text becomes 'Thank You'
+
+    function mOut(obj) {
+        obj.innerHTML = "Mouse Over Me"
+    } --> When mouse is not on div, then the text becomes 'Mouse Over Me'
+
+27. <div onmousedown="mDown(this)" onmouseup="mUp(this)">Click Me</div>
+
+    function mDown(obj) {
+        obj.style.backgroundColor = "#1ec5e5";
+        obj.innerHTML = "Release Me";
+    } -- > When mouse is clicked and hold then text becomes 'Release Me' and color chnages to blue
+
+    function mUp(obj) {
+        obj.style.backgroundColor="#D94A38";
+        obj.innerHTML="Thank You";
+    } -- > When mouse is released then text becomes 'Thank You' and color chnages to red
+
+28. <img id="myimage" onmousedown="lighton()" onmouseup="lightoff()" src="bulboff.gif" width="100" height="180"/>
+
+    function lighton() {
+        document.getElementById('myimage').src = "bulbon.gif";
+    } --> changes the <img> attribute 'src' to bulb ON image
+    function lightoff() {
+        document.getElementById('myimage').src = "bulboff.gif";
+    } --> changes the <img> attribute 'src' to bulb OFF image
+
+29. <body onload="mymessage()">
+
+    function mymessage() {
+        alert("This message was triggered from the onload event");
+    } --> alerts "This message was triggered from the onload event" as soon as the page loads
+
+30. <input type="text" onfocus="myFunction(this)">
+
+    function myFunction(x) {
+        x.style.background = "yellow";
+    } --> text field's color changes when clicked on it
+
+31. <h1 onmouseover="style.color='red'"onmouseout="style.color='black'">
+        Mouse over this text</h1> --> text becomes red when hovered and becomes normal when mouse is away
+
+32. <button id="myBtn">Try it</button>
+    <p id="demo"></p>
+
+    document.getElementById("myBtn").addEventListener("click", displayDate);
+    --> when a click event is sensed on button, it will trigger 'displayDate' fn
+
+    function displayDate() {
+        document.getElementById("demo").innerHTML = Date();
+    }
+
+    Remove an event listener by using the removeEventListener() method.
+
+33. <button id="myBtn">Try it</button>
+
+    document.getElementById("myBtn").addEventListener("click", alerts);
+
+    function alerts(){  --> Writing a fn separately
+        alert('Hello')
+    }     -------OR-------
+
+    document.getElementById("myBtn").addEventListener("click", function() {
+        alert("Hello World!");   --> writing the fn inside the event listener
+    });
+
+34. <p id="demo"></p>
+    window.addEventListener("resize", function(){
+        document.getElementById("demo").innerHTML = Math.floor(Math.random()*10);
+    }); --> when the browser window is resized, a random no. from 0-9 is showed.
+
+35. When passing parameter values, use an "anonymous function" that calls the specified function with the parameters:
+
+    <p id="demo"></p>
+
+    let p1 = 5;
+    let p2 = 7;
+    document.getElementById("myBtn").addEventListener("click", function() {
+        myFunction(p1, p2);
+    });
+
+    function myFunction(a, b) {
+        document.getElementById("demo").innerHTML = a * b;
+    } --> diplays a x b when clicked
+
+36.  <button onclick="removeHandler()" id="myBtn">Remove</button>
+    <p id="demo"></p>
+
+    document.getElementById("myDIV").addEventListener("mousemove", myFunction);
+
+    function myFunction() {
+        document.getElementById("demo").innerHTML = Math.random();
+    }
+    function removeHandler() {
+        document.getElementById("myDIV").removeEventListener("mousemove", myFunction);
+    } --> rempves the event listener from "myDIV".
+
+---------------------DOM NAVIGATION-------------------------
+
+37.  <title id="demo">DOM Tutorial</title> --> 'title' has a child node which is a text node thatb contains "DOM Tutorial"
+
+    myTitle = document.getElementById("demo").innerHTML; --> To access the text node value(i.e "DOM Tutorial") 
+                                   ----------OR----------
+
+    myTitle = document.getElementById("demo").firstChild.nodeValue; --> same as above
+                                    ----------OR----------
+
+    myTitle = document.getElementById("demo").childNodes[0].nodeValue; --> same as above
+
+38. <h1 id="id01">My First Page</h1>
+    <p id="id02"></p>
+
+    document.getElementById("id02").innerHTML = document.getElementById("id01").innerHTML; 
+    --> retrieves the text of an <h1>(i.e My First Page) and copies it into a <p>
+                                    ----------OR----------
+
+    document.getElementById("id02").innerHTML = document.getElementById("id01").firstChild.nodeValue;
+                                    ----------OR----------
+
+    document.getElementById("id02").innerHTML = document.getElementById("id01").childNodes[0].nodeValue;
+
+39. Properties that allow access to the full document:
+
+    <h2>JavaScript HTMLDOM</h2>
+    <p>Displaying document.documentElement</p>
+
+    <p id="demo"></p>
+
+    document.getElementById("demo").innerHTML = document.documentElement.innerHTML;
+                                    ----------AND----------
+    
+    document.getElementById("demo").innerHTML = document.body.innerHTML;
+
+40. <h1 id="id01">My First Page</h1>
+    <p id="id02"></p>
+
+    document.getElementById("id02").innerHTML = document.getElementById("id01").nodeName;
+    --> nodeName property specifies the name of a node.
+        nodeName is read-only
+        nodeName of an element node is the same as the tag name
+        nodeName of an attribute node is the attribute name
+        nodeName of a text node is always #text
+        nodeName of the document node is always #document
+
+41. nodeValue property specifies the value of a node.
+
+    nodeValue for element nodes is null
+    nodeValue for text nodes is the text itself
+    nodeValue for attribute nodes is the attribute value
+
+42. <h1 id="id01">My First Page</h1>
+    <p id="id02"></p>
+
+    document.getElementById("id02").innerHTML = document.getElementById("id01").nodeType;
+    -->  returns the type of a node.
+
+    ELEMENT_NODE = 1, TEXT_NODE = 3,  COMMENT_NODE = 8, DOCUMENT_NODE = 9, DOCUMENT_TYPE_NODE = 10 = <!Doctype html>
+
+43. const para = document.createElement("p"); --> creating a <p> element
+    const node = document.createTextNode("This is new."); --> creating a text node with text "This is new." for <p>
+    para.appendChild(node); --> Append the text node to <p>
+
+    const element = document.getElementById("div1");
+    element.appendChild(para); -->  Append the <p> element to <div> element such that <p> is a child node of <div>
+
+44. <div id="div1">
+        <p id="p1">This is a paragraph.</p>
+    </div>
+
+    const para = document.createElement("p"); ....
+   
+    const element = document.getElementById("div1");
+    const child = document.getElementById("p1");
+    element.insertBefore(para, child); --> insert the para(This is new.) element before p1(This is a paragraph)
+
+45. const elmnt = document.getElementById("p1"); elmnt.remove(); --> removes element with id="p1"
+     Doesn't work in older browser
+
+46. <div id="div1">
+        <p id="p1">This is a paragraph.</p>
+
+    const parent = document.getElementById("div1");
+    const child = document.getElementById("p1");
+    parent.removeChild(child); --> removes element with id="p1" from <div>. 
+
+47. const para = document.createElement("p");....
+
+    const parent = document.getElementById("div1");
+    const child = document.getElementById("p1");
+    parent.replaceChild(para, child); --> replaces the text in "p1" element with 'para' text
+
+----------------------DOM Collections-----------------------------
+
+48. The getElementsByTagName() method returns an HTMLCollection object.
+    An HTMLCollection object is an array-like list (collection) of HTML elements. The index starts at 0.
+
+    <p>Hello World!</p>
+    <p>Hello Norway!</p>
+    <p id="demo"></p>
+
+    const myCollection = document.getElementsByTagName("p");
+    document.getElementById("demo").innerHTML = "The innerHTML of the second paragraph is: " + myCollection[1].innerHTML;
+    --> myCollection[1] refers to the second <p> element i.e. "Hello Norway!"
+
+49. <button onclick="myFunction()">Try it</button>
+
+function myFunction() {
+    const myCollection = document.getElementsByTagName("p");
+        for (let i = 0; i < myCollection.length; i++) { --> myCollection.length return the no. of <p> elements
+            myCollection[i].style.color = "red";
+        }
+    } --> colors all the <p> element's text red.
+
+50. Most browsers return a 'NodeList' object for the method querySelectorAll().
+
+    <p>Hello World!</p>
+    <p>Hello Norway!</p>
+    <p id="demo"></p>
+
+    const myNodelist = document.querySelectorAll("p");
+
+    document.getElementById("demo").innerHTML = "The innerHTML of the second p is: " + myNodelist[1].innerHTML;
+    --> returns the text of second <p> element. myNodelist[1] refers to the second <p> element i.e. "Hello Norway!"
+
+51. const myNodelist = document.querySelectorAll("p");
+
+    document.getElementById("demo").innerHTML = "This document contains " + myNodelist.length + " paragraphs.";
+    --> myNodelist.length returns the no. of <p> elements
+
+52. <button onclick="myFunction()">Try it</button>
+
+    function myFunction() {
+        const myNodelist = document.querySelectorAll("p");
+        for (let i = 0; i < myNodelist.length; i++) {
+            myNodelist[i].style.color = "red";
+        }
+    }  --> colors all the <p> element's text red.
+
+    HTMLCollection items can be accessed by their name, id, or index number.
+    NodeList items can only be accessed by their index number.
+    Only the NodeList object can contain attribute nodes and text nodes

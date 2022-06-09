@@ -1,0 +1,129 @@
+const companies = [
+    {name: "Company 0ne", category: "Finance", start: 1981, end: 2003},
+    {name: "Company Two", category: "Retail", start: 1992, end: 2008},
+    {name: "Company Three ", category: "Auto ", start: 1999, end: 2007},
+    {name: "Company Four", category: "Retail", start: 1989, end: 2010},
+    {name: "Company Five", category: "Technology" , start: 2009, end: 2014},
+    {name: "Company Six", category: "Finance", start: 1987, end: 2010},
+    {name: "Company Seven", category: "Auto", start: 1986, end: 1996} ,
+    {name: "Company Eight", category: "Technology", start: 2011, end: 2016},
+    {name: "Company Nine", category: "Retail", start: 1981, end: 1989} 
+]
+
+const ages = [33, 12, 24, 31, 18, 23, 29, 38, 14, 25, 29, 13, 38, 5, 58]
+
+// for (let i = 0; i < companies.length; i++) {
+//     console.log(companies)
+// }
+// // returns nine times the whole array of nine companies
+
+// for (let i = 0; i < companies.length; i++) {
+//     console.log(companies[i])
+// }
+// // returns individual objects(companies) of companies array
+
+// companies.forEach((company, index, companies) => console.log(company))
+// returns individual objects(company) of companies array. Here 'company' is an iterator, 'index' is the index of the object in the iterator and 'companies' is the array we created. 'index' and 'companies' are optional. Arrow fn is used.
+
+//  companies.forEach(function(company, index, companies){
+//      console.log(company)
+//  })
+ // returns individual objects(company) of companies array. Here 'company' is an iterator, 'index' is the index of the object in the iterator and 'companies' is the array we created. 'index' and 'companies' are optional. This is same as above but using function keyword.
+ //---------------------------------------------------------------------------
+ 
+ // Get ages less than 18
+//  let children = []
+ 
+//  for(let i = 0; i < ages.length; i++){
+//      if(ages[i] < 18 ){
+//          children.push(ages[i])
+//      }
+// //  }
+// console.log(children) // returns an array of ages less than 18, [12, 14, 13, 5]
+
+// const children = ages.filter(function(age){
+//     if(age < 18){
+//         return true
+//     }
+// })
+// console.log(children)
+// // filter method using ES5 function keyword
+
+// const children = ages.filter(age => age < 18)
+// console.log(children) // returns an array of ages less than 18, [12, 14, 13, 5]
+//------------------------------------------------------------------------------
+
+// Filter retail array
+
+// const retailComp = companies.filter(function(company){
+//     if(company.category === "Retail"){
+//         return true
+//     }
+// })
+// // filter method using ES5 function keyword
+
+// const retailComp = companies.filter(company => company.category === "Retail")
+// console.log(retailComp)
+// // filter method using ES6 arrow function
+//-----------------------------------------------------------------------------
+
+// Get 80's companies between 1980 and 2000
+
+// const eightees = companies.filter(company => company.start >= 1980 && company.end < 2000)
+// console.log(eightees)
+//------------------------------------------------------------------------------
+
+// Get companies that lasted 10 years or more
+
+// const lasted = companies.filter(company => (company.end - company.start) >= 10)
+// console.log(lasted)
+//------------------------------------------------------------------------------
+
+// Create an array of company names
+
+// const companyNames  = companies.map(company => company.name)
+// console.log(companyNames) // returns an array  of company names
+
+// const testMap = companies.map(company => 
+//     `${company.name} [${company.start} - ${company.end}]`
+// )
+// console.log(testMap)
+// // returns an array of company names and their start and end dates like Company One [1981 - 2003].
+// // Template literals are required otherwise computer will try to evaluate the program and returns undefined.
+//------------------------------------------------------------------------------
+
+// Square the ages in ages array
+
+// const squared = ages.map(age => age*age)
+// console.log(squared) // returns an array of squared numbers of ages array
+
+// const squareRoot  = ages.map(age => Math.sqrt(age))
+// console.log(squareRoot) // retuns an array of sqaure root of ages array
+
+// const ageMap = ages.map(age => Math.sqrt(age)).map(age => age * 2)
+// console.log(ageMap) // first map method returns square root of ages and second map method multiplies those square root of ages with 2.
+//------------------------------------------------------------------------------
+
+// Sort companies in ascending order based on their start dates
+
+// const sorted = companies.sort((c1, c2) => {
+//       if(c1.start > c2.start){
+//       return 1;
+//   } else{
+//       return -1;
+//   }
+// })
+// console.log(sorted) // returns array of companies object in ascending order fo their start dates
+
+// const sorted = companies.sort((a, b) => (a.start > b.start ? 1 : -1))
+// console.log(sorted) // returns array of companies object in ascending order fo their start dates
+
+// Sort ages in asc order
+
+// const sortAge = ages.sort((a, b) => a - b)
+// console.log(sortAge) // returns array [5, 12, 13....38, 58]
+
+// Sort ages in desc order
+
+const sortAge = ages.sort((a, b) => b - a)
+console.log(sortAge) // returns array [58, 38, 38, 33 .... 12, 5]

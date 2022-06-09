@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>This is the title</h1>
+    </head>
+    <body>
+        
+    </body>
+    <script>
+        const para = document.createElement('p'); // Add a <p> element
+        para.style.color = 'red'
+        para.textContent = 'Hey, I am red';
+        document.body.appendChild(para);          // Append the 'para' element to the body
+
+        const het = document.createElement('h3');  
+        het.style.color = 'blue'
+        het.textContent = 'Hey, I am blue h3';
+        document.body.appendChild(het);
+
+        const sai = document.createElement('div');  // Add a <div> element
+        sai.style.border = 'black';
+        sai.style.backgroundColor = 'pink'
+        document.body.appendChild(sai)
+
+        const sss = document.createElement('h1'); 
+        sss.textContent = 'I\'m a div';
+        sai.appendChild(sss);                       // Append the 'sss' element to the div element(sai)
+
+        const ppp = document.createElement('p');
+        ppp.textContent = 'Me too';
+        sai.appendChild(ppp);                       // Append the 'ppp' element to the div element(sai)
+    </script>
+</html>
